@@ -20,7 +20,7 @@ public class Pratica72 {
     static final Scanner leitura = new Scanner(System.in);
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-         String caminho, linha;
+         String caminho, linha, palavra = "";
          Integer num;
          HashMap<String, Integer> lista = new HashMap<>();
          BufferedReader br;
@@ -30,9 +30,33 @@ public class Pratica72 {
          br = new BufferedReader(new FileReader(caminho));
          
          while((linha = br.readLine()) != null){
-             System.out.println("=> " +linha);
-         }
-         
+             linha = linha +" ";
+             for(int i = 0; i < linha.length();i++){
+                 if(Character.isAlphabetic(linha.charAt(i))){
+                     palavra = palavra + linha.charAt(i);
+                 }
+                 else if(palavra != ""){
+                     palavra = palavra.toLowerCase();
+                     if(lista.containsKey(palavra)){
+                         lista.replace(palavra, lista.get(palavra)+1);
+                     }
+                     else{
+                        lista.put(palavra, 1);
 
+                     }
+                     palavra = "";
+                 }
+                     
+             }
+             System.out.println("Linha: " + linha);
+             System.out.println("=> " +lista);
+         }
+         bw = new BufferedWriter(new FileWriter("teste_out.csv"));
+         for(String j: lista.keySet()){
+             bw.write(j + " - " + lista.get(j));
+             bw.newLine();
+         }
+         br.close();
+         bw.close();
     }
 }
