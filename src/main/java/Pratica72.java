@@ -20,7 +20,7 @@ public class Pratica72 {
     static final Scanner leitura = new Scanner(System.in);
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-         String caminho;
+         String caminho, linha;
          Integer num;
          HashMap<String, Integer> lista = new HashMap<>();
          BufferedReader br;
@@ -29,8 +29,8 @@ public class Pratica72 {
          caminho = leitura.next();
          br = new BufferedReader(new FileReader(caminho));
          
-         while(br.readLine() != null){
-             
+         while((linha = br.readLine()) != null){
+             System.out.println("=> " +linha);
          }
          
 
